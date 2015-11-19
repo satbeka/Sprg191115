@@ -15,7 +15,7 @@ public class Runner {
         thread2.start();
         System.out.println("start eeee current=" + Thread.currentThread());
         try {
-            System.out.println("sleep ");
+            System.out.println("Thread sleep ");
             Thread.sleep(10000);
             System.out.println("thread1.isAlive()=" + thread1.isAlive());
             System.out.println("thread2.isAlive()="+thread2.isAlive());
