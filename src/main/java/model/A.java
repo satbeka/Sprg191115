@@ -7,7 +7,7 @@ import java.sql.Date;
  */
 public class A {
 
-    private int i=0;
+    private volatile int i=0;
     private String str="A10000000000001AAA";
     private Date dt;
 
@@ -35,17 +35,45 @@ public class A {
         this.dt = dt;
     }
 
-    public void method1_checkI(){
+    public void method1_checkI(int bb){
         i++;
-        i=i+10;
-        System.out.println("i="+i);
+        i=i+bb;
+
+        i=i+100;
+        System.out.println("     i="+i);
+        System.out.println("     A Thread.currentThread().getName()="+Thread.currentThread().getName());
         return;
     }
+
+    public static void method2_checkI(int bb){
+        int i=0;
+        i++;
+        i=i+bb;
+
+        i=i+100;
+        i=i+method21_checkI(i);
+        System.out.println("     i="+i);
+        System.out.println("     2   A Thread.currentThread().getName()="+Thread.currentThread().getName());
+        return;
+    }
+
+    public static int method21_checkI(int bb){
+        int i=0;
+        i++;
+        i=i+bb;
+
+        i=i+100;
+        System.out.println("     i="+i);
+        System.out.println("     21  A Thread.currentThread().getName()="+Thread.currentThread().getName());
+        return i;
+    }
+
 
     public void method2_checkStr(){
         str=str+"jkoAAAlhgtt-+96---";
 
         System.out.println("str="+str);
+
         return;
     }
 

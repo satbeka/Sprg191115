@@ -7,24 +7,39 @@ public class Runner {
     public static void main(String[] args) {
 
         System.out.println("start current="+Thread.currentThread());
-        Thread thread1=new Thread(new MyThread1());
+        //Thread thread1=new Thread(new MyThread1());
+        A a=new A();
+        MyThread1 thread1=new MyThread1(a);
+        thread1.setName("Trhed1");
+        MyThread1 thread12=new MyThread1(a);
+        thread12.setName("Trhed12");
+
+
 
         Thread thread2=new Thread(new MyThread2());
+        MyThread1 thread13=new MyThread1(a);
+        thread13.setName("Trhed13");
+
 
         thread1.start();
+        thread12.start();
         thread2.start();
+        thread13.start();
         System.out.println("start eeee current=" + Thread.currentThread());
         try {
             System.out.println("Thread sleep ");
-            Thread.sleep(10000);
-            System.out.println("thread1.isAlive()=" + thread1.isAlive());
-            System.out.println("thread2.isAlive()="+thread2.isAlive());
+            Thread.sleep(1000);
+            System.out.println("aft Thread.currentThread()=" + Thread.currentThread());
+            System.out.println("aft Thread.currentThread().isAlive()=" + Thread.currentThread().isAlive());
+            System.out.println("aft thread1.isAlive()=" + thread1.isAlive());
+            System.out.println("aft thread2.isAlive()="+thread2.isAlive());
         } catch (InterruptedException e) {
             System.out.println("sleep exep=" + e.getMessage());
         }
 
-        System.out.println("aft sleep thread1.isAlive()=" + thread1.isAlive());
-        System.out.println("aft sleep thread2.isAlive()="+thread2.isAlive());
+        System.out.println("end sleep thread1.isAlive()=" + thread1.isAlive());
+        System.out.println("end sleep thread2.isAlive()="+thread2.isAlive());
+
 
 
     }
