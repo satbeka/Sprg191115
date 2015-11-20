@@ -35,7 +35,7 @@ public class A {
         this.dt = dt;
     }
 
-    public void method1_checkI(int bb){
+    public synchronized void method1_checkI(int bb){
         i++;
         i=i+bb;
 

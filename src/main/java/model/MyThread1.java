@@ -18,7 +18,15 @@ public class MyThread1 extends Thread {
             System.out.println(" Thread1.currentThread().isAlive()=" + Thread.currentThread().isAlive());
             try {
                 System.out.println(" MyThread1 sleep befr");
-                sleep(100);
+
+                synchronized (this) {
+                    for (int i = 4; i > 0; i--) {
+                        System.out.println(" Thread: " + Thread.currentThread() + ", " + i);
+                    }
+                }
+
+
+                sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

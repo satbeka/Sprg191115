@@ -16,6 +16,7 @@ public class Runner {
 
 
 
+
         Thread thread2=new Thread(new MyThread2());
         MyThread1 thread13=new MyThread1(a);
         thread13.setName("Trhed13");
@@ -25,6 +26,21 @@ public class Runner {
         thread12.start();
         thread2.start();
         thread13.start();
+
+        System.out.println("      befr join Thread.currentThread().State=" + Thread.currentThread().getState().toString());
+        System.out.println("      befr join Thread12.isAlive()=" + thread12.isAlive());
+        try {
+            thread12.join(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.println("      aft join Thread.currentThread().State=" + Thread.currentThread().getState().toString());
+        System.out.println("      aft join Thread12.isAlive()=" + thread12.isAlive());
+
+
+
         System.out.println("start eeee current=" + Thread.currentThread());
         try {
             System.out.println("Thread sleep ");
